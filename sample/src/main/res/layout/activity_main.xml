@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:endMonth="07"
-        app:endYear="2016"
+        app:endYear="2050"
         app:startMonth="01"
-        app:startYear="2016" />
+        app:startYear="2000" />
 
 </RelativeLayout>

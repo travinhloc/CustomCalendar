@@ -4,10 +4,12 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color>
-
+    <color name="black">#333333</color>
+    <color name="green">#95c193</color>
+    <color name="blue">#00a9c4</color>
     <!-- Calendar -->
     <color name="calendar_month_text">#757575</color>
-    <color name="blue_circle_calendar">@color/colorPrimaryDark</color>
+    <color name="blue_circle_calendar">@color/green</color>
     <color name="news_icon_background">#E3E3E3</color>
 
 

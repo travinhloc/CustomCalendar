@@ -1,6 +1,6 @@
 package com.riontech.calendar.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dhaval Soneji on 13/5/16.
@@ -8,22 +8,22 @@ import java.util.ArrayList;
 public class CalendarResponse{
     private String startmon;
     private String endmon;
-    private ArrayList<Event> monthdata;
-    private ArrayList<EventData> currentDateData;
+    private List<Event> monthdata;
+    private List<EventData> currentDateData;
 
-    public ArrayList<EventData> getCurrentDateData() {
+    public List<EventData> getCurrentDateData() {
         return currentDateData;
     }
 
-    public void setCurrentDateData(ArrayList<EventData> currentDateData) {
+    public void setCurrentDateData(List<EventData> currentDateData) {
         this.currentDateData = currentDateData;
     }
 
-    public ArrayList<Event> getMonthdata() {
+    public List<Event> getMonthdata() {
         return monthdata;
     }
 
-    public void setMonthdata(ArrayList<Event> monthdata) {
+    public void setMonthdata(List<Event> monthdata) {
         this.monthdata = monthdata;
     }
 

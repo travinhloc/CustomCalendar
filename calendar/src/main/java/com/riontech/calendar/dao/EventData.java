@@ -1,13 +1,13 @@
 package com.riontech.calendar.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dhaval Soneji on 13/5/16.
  */
 public class EventData {
     private String section;
-    private ArrayList<dataAboutDate> data;
+    private List<dataAboutDate> data;
 
     public String getSection() {
         return section;
@@ -17,11 +17,11 @@ public class EventData {
         this.section = section;
     }
 
-    public ArrayList<dataAboutDate> getData() {
+    public List<dataAboutDate> getData() {
         return data;
     }
 
-    public void setData(ArrayList<dataAboutDate> data) {
+    public void setData(List<dataAboutDate> data) {
         this.data = data;
     }
 }

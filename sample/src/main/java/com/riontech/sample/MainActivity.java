@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         customCalendar = (CustomCalendar) findViewById(R.id.customCalendar);
 
-        String[] arr = {"2016-06-10", "2016-06-11", "2016-06-15", "2016-06-16", "2016-06-25"};
+        String[] arr = {"2020-04-20", "2020-04-22","2020-04-23","2020-04-24","2020-04-25"};
         for (int i = 0; i < 5; i++) {
             int eventCount = 10;
             customCalendar.addAnEvent(arr[i], eventCount, getEventDataList(eventCount));

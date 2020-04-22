@@ -29,9 +29,11 @@ import com.riontech.calendar.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * Created by Dhaval Soneji on 2/6/16.
@@ -45,12 +47,7 @@ public class CustomCalendar extends LinearLayout {
     private int mTotalMonthCount;
     private int mDuplicateTotalMonthCount;
     private int mCurrentPosition;
-    private RecyclerView mRvCalendar;
-    private LinearLayoutManager mLinearLayoutManager;
-    private TextView mTxtEventMessage;
-    private TextView mTxtFailed;
-    private ImageView mImgFailed;
-    private ArrayList<Event> mEventList;
+    private List<Event> mEventList;
     private boolean isValidAttr = true;
 
     private Context mContext;
@@ -60,8 +57,8 @@ public class CustomCalendar extends LinearLayout {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.layout_viewpager_recyclerview, this);
         Calendar calendar = Calendar.getInstance();
-        mStartMonth = "1, " + String.valueOf(calendar.get(Calendar.YEAR));
-        mEndMonth = "12, " + String.valueOf(calendar.get(Calendar.YEAR));
+        mStartMonth = "1, " + calendar.get(Calendar.YEAR);
+        mEndMonth = "12, " + calendar.get(Calendar.YEAR);
         mContext = context;
         initViews();
     }
@@ -110,10 +107,7 @@ public class CustomCalendar extends LinearLayout {
             }
         }
         mViewPager = (ViewPager) findViewById(R.id.viewPager);
-        mTxtEventMessage = (TextView) findViewById(R.id.txtEventMessage);
-        mImgFailed = (ImageView) findViewById(R.id.imgFailed);
-        mTxtFailed = (TextView) findViewById(R.id.txtCalendarMessage);
-        mRvCalendar = (RecyclerView) findViewById(R.id.rvCalendar);
+//        mRvCalendar = (RecyclerView) findViewById(R.id.rvCalendar);
 
         if (!isValidAttr) {
             invalidAttributes(getResources().getString(R.string.invalid_attribute));
@@ -129,10 +123,8 @@ public class CustomCalendar extends LinearLayout {
         Singleton.getInstance().setTodayDate(
                 CalendarUtils.getCalendarDBFormat().format(Calendar.getInstance().getTime()));
 
-        mEventList = new ArrayList();
+        mEventList = new ArrayList<>();
 
-        mLinearLayoutManager = new LinearLayoutManager(mContext);
-        mRvCalendar.setLayoutManager(mLinearLayoutManager);
         Singleton.getInstance().setStartMonth(mStartMonth);
         Singleton.getInstance().setEndMonth(mEndMonth);
 
@@ -152,14 +144,9 @@ public class CustomCalendar extends LinearLayout {
 
     private void invalidAttributes(String message) {
         mViewPager.setVisibility(GONE);
-        mTxtEventMessage.setVisibility(GONE);
-        mRvCalendar.setVisibility(GONE);
-        mImgFailed.setVisibility(VISIBLE);
-        mTxtFailed.setText(message);
-        mTxtFailed.setVisibility(VISIBLE);
     }
 
-    public void addAnEvent(String eventDate, int eventCount, ArrayList<EventData> eventData) {
+    public void addAnEvent(String eventDate, int eventCount, List<EventData> eventData) {
         if (!isValidAttr)
             return;
 
@@ -178,7 +165,7 @@ public class CustomCalendar extends LinearLayout {
         String b = temp[1];
         a = a + 1;
         mStartMonth = startMonth;
-        mEndMonth = String.valueOf(a) + ", " + b;
+        mEndMonth = a + ", " + b;
 
         SimpleDateFormat sdf = new SimpleDateFormat("MM, yyyy");
         Calendar currentCalendar = Calendar.getInstance();
@@ -209,7 +196,9 @@ public class CustomCalendar extends LinearLayout {
         FragmentManager fm = fragmentActivity.getSupportFragmentManager();
 
         mAdapter = new ViewPagerAdapter(fm, mTotalMonthCount, this);
-        mViewPager.setOffscreenPageLimit(1);
+        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setPageMargin(250);
+        mViewPager.setClipChildren(false);
         mViewPager.setAdapter(mAdapter);
 
         mViewPager.setCurrentItem(diffCurrentMonth);
@@ -247,12 +236,9 @@ public class CustomCalendar extends LinearLayout {
     /**
      * @param dateData
      */
-    public void setDateSelectionData(ArrayList<EventData> dateData) {
+    public void setDateSelectionData(List<EventData> dateData) {
 
-        mRvCalendar.setVisibility(View.VISIBLE);
-        mTxtEventMessage.setVisibility(View.GONE);
-        mTxtEventMessage.setText("");
-        ArrayList<Object> items = new ArrayList<>();
+        List<Object> items = new ArrayList<>();
         items.clear();
         if (dateData.size() > 0) {
             for (int i = 0; i < dateData.size(); i++) {
@@ -263,7 +249,7 @@ public class CustomCalendar extends LinearLayout {
                 }
                 if (dateData.size() > 0) {
                     for (int j = 0; j < dateData.get(i).getData().size(); j++) {
-                        ArrayList<String> list = new ArrayList<>();
+                        List<String> list = new ArrayList<>();
 
                         if (dateData.get(i).getData().get(j).getRemarks() != null)
                             list.add(dateData.get(i).getData().get(j).getRemarks());
@@ -287,17 +273,15 @@ public class CustomCalendar extends LinearLayout {
             }
         }
         if (items.size() == 0) {
-            mRvCalendar.setVisibility(View.GONE);
+//            mRvCalendar.setVisibility(View.GONE);
             try {
                 Date dateTemp = CalendarUtils.getCalendarDBFormat().parse(Singleton.getInstance().getCurrentDate());
-                mTxtEventMessage.setText(getResources().getString(R.string.no_events) + " (" + CalendarUtils.getCalendarDateFormat().format(dateTemp) + ")");
             } catch (ParseException e) {
                 Log.e(TAG, e.getMessage(), e);
             }
-            mTxtEventMessage.setVisibility(View.VISIBLE);
         } else {
-            mRvCalendar.setLayoutManager(mLinearLayoutManager);
-            mRvCalendar.setAdapter(new CalendarDataAdapter(items));
+//            mRvCalendar.setLayoutManager(mLinearLayoutManager);
+//            mRvCalendar.setAdapter(new CalendarDataAdapter(items));
         }
     }
 

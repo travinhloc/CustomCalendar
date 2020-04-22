@@ -2,7 +2,7 @@ package com.riontech.calendar;
 
 import com.riontech.calendar.dao.Event;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.GregorianCalendar;
 
 /**
@@ -17,7 +17,7 @@ public class Singleton {
     private int mIsSwipeViewPager = 2;
     private String startMonth;
     private String endMonth;
-    private ArrayList<Event> mEventManager;
+    private List<Event> mEventManager;
 
     public Singleton() {
 
@@ -78,11 +78,11 @@ public class Singleton {
         this.endMonth = endMonth;
     }
 
-    public ArrayList<Event> getEventManager() {
+    public List<Event> getEventManager() {
         return mEventManager;
     }
 
-    public void setEventManager(ArrayList<Event> eventManagerList) {
+    public void setEventManager(List<Event> eventManagerList) {
         this.mEventManager = eventManagerList;
     }
 

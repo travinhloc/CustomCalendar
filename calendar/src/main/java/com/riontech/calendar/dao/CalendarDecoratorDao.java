@@ -4,6 +4,7 @@ package com.riontech.calendar.dao;
  * Created by Dhaval Soneji on 28/3/16.
  */
 public class CalendarDecoratorDao {
+
     private String date;
     private int count;
     private int position;

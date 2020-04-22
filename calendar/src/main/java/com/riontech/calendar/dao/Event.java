@@ -1,6 +1,6 @@
 package com.riontech.calendar.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dhaval Soneji on 13/5/16.
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Event {
     private String date;
     private String count;
-    private ArrayList<EventData> eventData;
+    private List<EventData> eventData;
 
     public String getDate() {
         return date;
@@ -26,11 +26,11 @@ public class Event {
         this.count = count;
     }
 
-    public ArrayList<EventData> getEventData() {
+    public List<EventData> getEventData() {
         return eventData;
     }
 
-    public void setEventData(ArrayList<EventData> eventData) {
+    public void setEventData(List<EventData> eventData) {
         this.eventData = eventData;
     }
 }

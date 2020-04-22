@@ -18,19 +18,17 @@ import com.riontech.calendar.adapter.CalendarGridviewAdapter;
 import com.riontech.calendar.dao.CalendarDecoratorDao;
 import com.riontech.calendar.dao.CalendarResponse;
 import com.riontech.calendar.dao.Event;
-import com.riontech.calendar.dao.EventData;
 import com.riontech.calendar.utils.CalendarUtils;
 import com.riontech.calendar.R;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-/**
- * Created by Dhaval Soneji on 31/3/16.
- */
 public class CalendarFragment extends Fragment {
+
     private static final String TAG = CalendarFragment.class.getSimpleName();
 
     private GridView mGridview;
@@ -45,98 +43,49 @@ public class CalendarFragment extends Fragment {
     private GregorianCalendar mPMonth;
     private int mMonthLength;
     private GregorianCalendar mPMonthMaxSet;
-    private ArrayList<CalendarDecoratorDao> mEventList = new ArrayList<>();
+    private List<CalendarDecoratorDao> days = new ArrayList<>();
     private ViewGroup rootView;
-    private static CustomCalendar mCustomCalendar;
 
-
-    /**
-     * create CalendarFragment object and call setCalendar().
-     *
-     * @param calendar
-     * @return
-     */
     public static CalendarFragment newInstance(CustomCalendar calendar) {
         CalendarFragment fragment = new CalendarFragment();
-        fragment.setCalendar(calendar);
         return fragment;
     }
 
-    /**
-     * initialize CustomCalendar to access method of it.
-     *
-     * @param calendar
-     */
-    private void setCalendar(CustomCalendar calendar) {
-        mCustomCalendar = calendar;
-    }
-
-    /**
-     * initialize Calendar and for the first time load Current Month data.
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        rootView = (ViewGroup) inflater.inflate(
-                R.layout.fragement, container, false);
+        rootView = (ViewGroup) inflater.inflate(R.layout.fragement, container, false);
 
         initCurrentMonthInGridview();
-
-        if (Singleton.getInstance().getIsSwipeViewPager() == 2)
+        if (Singleton.getInstance().getIsSwipeViewPager() == 2) {
             refreshDays();
-
+        }
         return rootView;
     }
 
-    /**
-     * initialize DaysName(Sun,Mon,...) Layout,
-     * initialize Current MonthHeader(June 2016) Layout,
-     * initialize Gridview(Current month) With click event
-     */
     private void initCurrentMonthInGridview() {
-
-        mLlDayList = (LinearLayout) rootView.findViewById(R.id.llDayList);
-        mRlHeader = (RelativeLayout) rootView.findViewById(R.id.rlMonthTitle);
-
+        mLlDayList = rootView.findViewById(R.id.llDayList);
+        mRlHeader = rootView.findViewById(R.id.rlMonthTitle);
         month = Singleton.getInstance().getMonth();
-
-        mCalendarGridviewAdapter = new CalendarGridviewAdapter(getActivity(), mEventList, month);
+        mCalendarGridviewAdapter = new CalendarGridviewAdapter(getActivity(), days, month);
 
         mCalendar = month;
         mCalendar.set(Calendar.DAY_OF_MONTH, 1);
         mCalendar.setFirstDayOfWeek(Calendar.SUNDAY);
         mDateFormat = CalendarUtils.getCalendarDBFormat();
-
-        mGridview = (GridView) rootView.findViewById(R.id.gvCurrentMonthDayList);
+        mGridview = rootView.findViewById(R.id.gvCurrentMonthDayList);
         mGridview.setAdapter(mCalendarGridviewAdapter);
-
-        TextView title = (TextView) rootView.findViewById(R.id.title);
+        TextView title = rootView.findViewById(R.id.title);
         title.setText(android.text.format.DateFormat.format(CalendarUtils.getCalendarMonthTitleFormat(), month));
-
         mGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-
-                String selectedDate = mEventList.get(position).getDate();
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                String selectedDate = days.get(position).getDate();
                 ((CalendarGridviewAdapter) parent.getAdapter()).setSelected(v, selectedDate);
                 fetchEvents(selectedDate);
-
             }
         });
     }
 
-    /**
-     * check if date has event or not,
-     * then
-     *
-     * @param date
-     */
     public void fetchEvents(String date) {
         boolean flag = false;
         int pos = 0;
@@ -146,33 +95,18 @@ public class CalendarFragment extends Fragment {
                 pos = i;
             }
         }
-        ArrayList<EventData> eventDataArrayList = new ArrayList();
-        if (flag) {
-            if (Singleton.getInstance().getEventManager().get(pos).getEventData() != null) {
-                eventDataArrayList = Singleton.getInstance().getEventManager().get(pos).getEventData();
-            }
-        }
-
-        if (mCustomCalendar != null)
-            mCustomCalendar.setDateSelectionData(eventDataArrayList);
     }
 
-    /**
-     * refresh current month
-     */
     public void refreshCalendar() {
-        TextView title = (TextView) rootView.findViewById(R.id.title);
+        TextView title = rootView.findViewById(R.id.title);
         refreshDays();
         title.setText(android.text.format.DateFormat.format(CalendarUtils.getCalendarMonthTitleFormat(), month));
     }
 
-    /**
-     * refresh current month days
-     */
     public void refreshDays() {
 
         //clear List
-        mEventList.clear();
+        days.clear();
         //create clone
         mPMonth = (GregorianCalendar) mCalendar.clone();
 
@@ -192,9 +126,6 @@ public class CalendarFragment extends Fragment {
 
     }
 
-    /**
-     * @return
-     */
     private CalendarResponse getCalendarData() {
         CalendarResponse calendarResponse = new CalendarResponse();
         calendarResponse.setStartmonth(Singleton.getInstance().getStartMonth());
@@ -203,9 +134,6 @@ public class CalendarFragment extends Fragment {
         return calendarResponse;
     }
 
-    /**
-     * @param calendarResponse
-     */
     private void setData(CalendarResponse calendarResponse) {
 
         mLlDayList.setVisibility(View.VISIBLE);
@@ -214,27 +142,26 @@ public class CalendarFragment extends Fragment {
 
         if (calendarResponse.getMonthdata() != null) {
 
-            ArrayList<Event> monthDataList = calendarResponse.getMonthdata();
+            List<Event> monthDataList = calendarResponse.getMonthdata();
             int m = 0;
 
             for (int n = 0; n < mMonthLength; n++) {
                 String mItemValue = mDateFormat.format(mPMonthMaxSet.getTime());
                 mPMonthMaxSet.add(GregorianCalendar.DATE, 1);
-
                 if (m < monthDataList.size()) {
                     if (mItemValue.equalsIgnoreCase(monthDataList.get(m).getDate())) {
                         CalendarDecoratorDao eventDao = new CalendarDecoratorDao(
                                 monthDataList.get(m).getDate(),
                                 Integer.parseInt(monthDataList.get(m).getCount()));
-                        mEventList.add(eventDao);
+                        days.add(eventDao);
                         m++;
                     } else {
                         CalendarDecoratorDao eventDao = new CalendarDecoratorDao(mItemValue, 0);
-                        mEventList.add(eventDao);
+                        days.add(eventDao);
                     }
                 } else {
                     CalendarDecoratorDao eventDao = new CalendarDecoratorDao(mItemValue, 0);
-                    mEventList.add(eventDao);
+                    days.add(eventDao);
                 }
             }
 
@@ -245,10 +172,6 @@ public class CalendarFragment extends Fragment {
             }
         }
     }
-
-    /**
-     * setup next month and check for calendar range
-     */
 
     public void setNextMonth() {
         if (month.get(GregorianCalendar.MONTH) == month
@@ -263,9 +186,6 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    /**
-     * setup previous month and check for calendar range
-     */
     public void setPreviousMonth() {
         if (month.get(GregorianCalendar.MONTH) == month
                 .getActualMinimum(GregorianCalendar.MONTH)) {
@@ -279,9 +199,6 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    /**
-     * @return
-     */
     private int getmMaxP() {
         int maxP;
         if (mCalendar.get(GregorianCalendar.MONTH) == mCalendar
