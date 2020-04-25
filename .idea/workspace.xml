@@ -9,53 +9,26 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5cdf8c4-caeb-4617-a049-781a59c42fb3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_animated_vector_drawable_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cardview_v7_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_design_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_recyclerview_v7_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_annotations_26_0_0_alpha1_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_compat_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_ui_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_utils_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_fragment_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_media_compat_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_v4_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_transition_26_0_0_alpha1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_6_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_13_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/calendar/src/main/res/font/f_bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/calendar/src/main/res/font/f_regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/calendar/src/main/res/font/f_semibold.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="d5cdf8c4-caeb-4617-a049-781a59c42fb3" name="Default" comment="update days selected">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CalendarConstant.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CustomCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CustomCalendar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/Singleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarGridviewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarGridviewAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/CalendarDecoratorDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/CalendarDecoratorDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarDataAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarGridviewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarGridViewAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/ViewPagerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/ViewPagerAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/CalendarResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/CalendarResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/EventData.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/EventData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/fragment/CalendarFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/fragment/CalendarFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/layout-land/layout_viewpager_recyclerview.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/layout/calendar_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/res/layout/calendar_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/SectionDataViewHolder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/SectionTitleViewHolder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/fragment/CalendarFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CalendarFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/utils/CalendarUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/utils/CalendarUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calendar/src/main/res/layout/fragement.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/res/layout/fragement.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calendar/src/main/res/layout/layout_viewpager_recyclerview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/res/layout/layout_viewpager_recyclerview.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/layout/row_event_header.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/res/layout/row_event_header.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/res/values/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/sample/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/layout/row_event_desc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/layout/row_event_header.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/res/values/dimens.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample/src/main/java/com/riontech/sample/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/sample/src/main/java/com/riontech/sample/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sample/src/main/res/layout/activity_main.xml" afterDir="false" />
     </list>
@@ -119,6 +92,9 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.riontech.calendar" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/calendar/src/main/res" />
     </key>
@@ -421,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1465285976919</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update ui">
+      <created>1587520941297</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1587520941297</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -429,7 +412,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -438,25 +423,26 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="build upgrade changes" />
     <MESSAGE value="screen orientaion adding" />
-    <option name="LAST_COMMIT_MESSAGE" value="screen orientaion adding" />
+    <MESSAGE value="update ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="update ui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarDataAdapter.java</url>
-          <line>98</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CalendarFragment.java</url>
+          <line>131</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarDataAdapter.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CalendarFragment.java</url>
+          <line>137</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarGridviewAdapter.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CalendarFragment.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

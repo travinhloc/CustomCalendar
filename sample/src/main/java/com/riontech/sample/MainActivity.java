@@ -2,6 +2,7 @@ package com.riontech.sample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.riontech.calendar.CustomCalendar;
 import com.riontech.calendar.dao.EventData;
@@ -9,6 +10,8 @@ import com.riontech.calendar.dao.dataAboutDate;
 import com.riontech.calendar.utils.CalendarUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,38 +19,17 @@ public class MainActivity extends AppCompatActivity {
     private CustomCalendar customCalendar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         customCalendar = (CustomCalendar) findViewById(R.id.customCalendar);
-
-        String[] arr = {"2020-04-20", "2020-04-22","2020-04-23","2020-04-24","2020-04-25"};
-        for (int i = 0; i < 5; i++) {
-            int eventCount = 10;
-            customCalendar.addAnEvent(arr[i], eventCount, getEventDataList(eventCount));
-        }
-    }
-
-    public ArrayList<EventData> getEventDataList(int count) {
-        ArrayList<EventData> eventDataList = new ArrayList();
-
-        for (int i = 0; i < count; i++) {
-            EventData dateData = new EventData();
-            ArrayList<dataAboutDate> dataAboutDates = new ArrayList();
-
-            dateData.setSection(CalendarUtils.getNAMES()[new Random().nextInt(CalendarUtils.getNAMES().length)]);
-            dataAboutDate dataAboutDate = new dataAboutDate();
-
-            int index = new Random().nextInt(CalendarUtils.getEVENTS().length);
-
-            dataAboutDate.setTitle(CalendarUtils.getEVENTS()[index]);
-            dataAboutDate.setSubject(CalendarUtils.getEventsDescription()[index]);
-            dataAboutDates.add(dataAboutDate);
-
-            dateData.setData(dataAboutDates);
-            eventDataList.add(dateData);
-        }
-
-        return eventDataList;
+        findViewById(R.id.add_event).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String[] arr = {"2020-03-01","2020-04-21","2020-04-22","2020-04-23","2020-04-24", "2020-05-01"};
+                List<String> strings = new ArrayList<>(Arrays.asList(arr));
+                customCalendar.addAnEvents(strings);
+            }
+        });
     }
 }

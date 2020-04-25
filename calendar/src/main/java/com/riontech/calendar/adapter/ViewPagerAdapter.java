@@ -7,7 +7,7 @@ import android.util.SparseArray;
 import android.view.ViewGroup;
 
 import com.riontech.calendar.CustomCalendar;
-import com.riontech.calendar.fragment.CalendarFragment;
+import com.riontech.calendar.CalendarFragment;
 
 /**
  * Created by Dhaval Soneji on 31/3/16.
@@ -16,18 +16,16 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     private SparseArray<Fragment> registeredFragments = new SparseArray<>();
     private int mCount;
     private static final String TAG = ViewPagerAdapter.class.getSimpleName();
-    private CustomCalendar mCalendar;
 
 
-    public ViewPagerAdapter(FragmentManager fm, int count, CustomCalendar calendar) {
+    public ViewPagerAdapter(FragmentManager fm, int count) {
         super(fm);
         this.mCount = count;
-        this.mCalendar = calendar;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return CalendarFragment.newInstance(mCalendar);
+        return CalendarFragment.newInstance();
     }
 
     @Override

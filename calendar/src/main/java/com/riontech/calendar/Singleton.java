@@ -5,9 +5,6 @@ import com.riontech.calendar.dao.Event;
 import java.util.List;
 import java.util.GregorianCalendar;
 
-/**
- * Created by Dhaval Soneji on 3/6/16.
- */
 public class Singleton {
     private final static String TAG = Singleton.class.getSimpleName();
     private static Singleton mInstance = null;

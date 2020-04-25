@@ -14,18 +14,7 @@
     <dimen name="h8">8sp</dimen>
 
     <!-- Common dimen -->
-    <dimen name="common_0_dp">0dp</dimen>
-    <dimen name="common_1_dp">1dp</dimen>
-    <dimen name="common_2_dp">2dp</dimen>
-    <dimen name="common_3_dp">3dp</dimen>
-    <dimen name="common_4_dp">4dp</dimen>
-    <dimen name="common_5_dp">5dp</dimen>
     <dimen name="common_10_dp">10dp</dimen>
-    <dimen name="common_15_dp">15dp</dimen>
-    <dimen name="common_20_dp">20dp</dimen>
-    <dimen name="common_25_dp">25dp</dimen>
-    <dimen name="common_30_dp">30dp</dimen>
     <dimen name="common_40_dp">40dp</dimen>
     <dimen name="common_50_dp">50dp</dimen>
-    <dimen name="common_60_dp">60dp</dimen>
 </resources>

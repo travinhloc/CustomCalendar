@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/h5"
                 android:orientation="horizontal"
-                android:paddingTop="@dimen/common_5_dp"
+                android:paddingTop="5dp"
                 android:visibility="visible"
                 android:weightSum="7">
 
@@ -152,9 +152,9 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.75dp"
-                android:layout_marginStart="@dimen/common_10_dp"
-                android:layout_marginTop="@dimen/common_5_dp"
-                android:layout_marginEnd="@dimen/common_10_dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
                 android:background="#D8D8D8" />
 
             <GridView

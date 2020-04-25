@@ -1,30 +1,20 @@
 package com.riontech.calendar;
 
-import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.riontech.calendar.adapter.CalendarDataAdapter;
 import com.riontech.calendar.adapter.ViewPagerAdapter;
 import com.riontech.calendar.dao.Event;
 import com.riontech.calendar.dao.EventData;
-import com.riontech.calendar.fragment.CalendarFragment;
 import com.riontech.calendar.utils.CalendarUtils;
-import com.riontech.calendar.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,25 +23,21 @@ import java.util.List;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
-/**
- * Created by Dhaval Soneji on 2/6/16.
- */
+@SuppressLint("SimpleDateFormat")
 public class CustomCalendar extends LinearLayout {
     private static final String TAG = CustomCalendar.class.getSimpleName();
     private String mStartMonth;
     private String mEndMonth;
-    private ViewPager mViewPager;
-    private ViewPagerAdapter mAdapter;
-    private int mTotalMonthCount;
-    private int mDuplicateTotalMonthCount;
-    private int mCurrentPosition;
-    private List<Event> mEventList;
+    private ViewPager viewPager;
+    private ViewPagerAdapter adapter;
+    private int duplicateTotalMonthCount;
+    private int currentPosition;
+    private List<Event> events;
     private boolean isValidAttr = true;
 
-    private Context mContext;
-    private AttributeSet mAttributeSet = null;
+    private Context context;
+    private AttributeSet attributeSet = null;
 
     public CustomCalendar(Context context) {
         super(context);
@@ -59,38 +45,29 @@ public class CustomCalendar extends LinearLayout {
         Calendar calendar = Calendar.getInstance();
         mStartMonth = "1, " + calendar.get(Calendar.YEAR);
         mEndMonth = "12, " + calendar.get(Calendar.YEAR);
-        mContext = context;
+        this.context = context;
         initViews();
     }
 
     public CustomCalendar(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.layout_viewpager_recyclerview, this);
-        mContext = context;
-        mAttributeSet = attrs;
+        this.context = context;
+        attributeSet = attrs;
         initViews();
     }
 
     public CustomCalendar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         LayoutInflater.from(context).inflate(R.layout.layout_viewpager_recyclerview, this);
-        mContext = context;
-        mAttributeSet = attrs;
-        initViews();
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public CustomCalendar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        LayoutInflater.from(context).inflate(R.layout.layout_viewpager_recyclerview, this);
-        this.mContext = context;
-        this.mAttributeSet = attrs;
+        this.context = context;
+        attributeSet = attrs;
         initViews();
     }
 
     private void initViews() {
-        if (mAttributeSet != null) {
-            TypedArray a = mContext.getTheme().obtainStyledAttributes(mAttributeSet,
+        if (attributeSet != null) {
+            TypedArray a = context.getTheme().obtainStyledAttributes(attributeSet,
                     R.styleable.CustomCalendar, 0, 0);
             try {
                 String startMonth = a.getString(R.styleable.CustomCalendar_startMonth);
@@ -98,7 +75,7 @@ public class CustomCalendar extends LinearLayout {
                 String endMonth = a.getString(R.styleable.CustomCalendar_endMonth);
                 String endYear = a.getString(R.styleable.CustomCalendar_endYear);
 
-                validateAttributes(startMonth, startYear, endMonth, endYear);
+                validateAttributes(startMonth, endMonth);
 
                 mStartMonth = startMonth + ", " + startYear;
                 mEndMonth = endMonth + ", " + endYear;
@@ -106,34 +83,29 @@ public class CustomCalendar extends LinearLayout {
                 a.recycle();
             }
         }
-        mViewPager = (ViewPager) findViewById(R.id.viewPager);
-//        mRvCalendar = (RecyclerView) findViewById(R.id.rvCalendar);
-
+        viewPager = findViewById(R.id.viewPager);
         if (!isValidAttr) {
-            invalidAttributes(getResources().getString(R.string.invalid_attribute));
+            invalidAttributes();
             return;
         }
 
-        /*
-            first time setup calendar currentMonth
-         */
         Singleton.getInstance().setMonth((GregorianCalendar) GregorianCalendar.getInstance());
         Singleton.getInstance().setCurrentDate(
                 CalendarUtils.getCalendarDBFormat().format(Calendar.getInstance().getTime()));
         Singleton.getInstance().setTodayDate(
                 CalendarUtils.getCalendarDBFormat().format(Calendar.getInstance().getTime()));
 
-        mEventList = new ArrayList<>();
+        events = new ArrayList<>();
 
         Singleton.getInstance().setStartMonth(mStartMonth);
         Singleton.getInstance().setEndMonth(mEndMonth);
 
         setupCalendar(Singleton.getInstance().getStartMonth(), Singleton.getInstance().getEndMonth());
 
-        Singleton.getInstance().setEventManager(mEventList);
+        Singleton.getInstance().setEventManager(events);
     }
 
-    private void validateAttributes(String startMonth, String startYear, String endMonth, String endYear) {
+    private void validateAttributes(String startMonth, String endMonth) {
         if (Integer.parseInt(startMonth) < 1 || Integer.parseInt(startMonth) > 12) {
             isValidAttr = false;
         }
@@ -142,25 +114,33 @@ public class CustomCalendar extends LinearLayout {
         }
     }
 
-    private void invalidAttributes(String message) {
-        mViewPager.setVisibility(GONE);
+    private void invalidAttributes() {
+        viewPager.setVisibility(GONE);
     }
 
-    public void addAnEvent(String eventDate, int eventCount, List<EventData> eventData) {
-        if (!isValidAttr)
-            return;
+    public void addAnEvent(String eventDate) {
+        if (!isValidAttr) return;
 
         Event date = new Event();
         date.setDate(eventDate);
-        date.setCount(String.valueOf(eventCount));
-        date.setEventData(eventData);
+        date.setCount(String.valueOf(1));
+        events.add(date);
+        Singleton.getInstance().setEventManager(events);
+    }
 
-        mEventList.add(date);
-        Singleton.getInstance().setEventManager(mEventList);
+    public void addAnEvents(List<String> strings) {
+        events.clear();
+        for (int i = 0; i < strings.size(); i++) {
+            Event date = new Event();
+            date.setDate(strings.get(i));
+            date.setCount(String.valueOf(1));
+            events.add(date);
+        }
+        ((CalendarFragment) adapter.getRegisteredFragment(viewPager.getCurrentItem())).refreshCalendar(events);
     }
 
     private void setupCalendar(String startMonth, String endMonth) {
-        String temp[] = endMonth.split(",");
+        String[] temp = endMonth.split(",");
         int a = Integer.parseInt(temp[0]);
         String b = temp[1];
         a = a + 1;
@@ -172,11 +152,10 @@ public class CustomCalendar extends LinearLayout {
         Calendar startCalendar = Calendar.getInstance();
         Calendar endCalendar = Calendar.getInstance();
 
-        Date startDate = null;
-        Date endDate = null;
+        Date startDate;
+        Date endDate;
 
         try {
-
             startDate = sdf.parse(mStartMonth);
             endDate = sdf.parse(mEndMonth);
             startCalendar.setTime(startDate);
@@ -186,113 +165,36 @@ public class CustomCalendar extends LinearLayout {
         }
 
         int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
-        mTotalMonthCount = diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
-        mDuplicateTotalMonthCount = mTotalMonthCount;
+        int totalMonthCount = diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+        duplicateTotalMonthCount = totalMonthCount;
         int diffCurrentYear = currentCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
         int diffCurrentMonth = diffCurrentYear * 12 + currentCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
-        mCurrentPosition = diffCurrentMonth;
+        currentPosition = diffCurrentMonth;
 
-        FragmentActivity fragmentActivity = (FragmentActivity) mContext;
-        FragmentManager fm = fragmentActivity.getSupportFragmentManager();
-
-        mAdapter = new ViewPagerAdapter(fm, mTotalMonthCount, this);
-        mViewPager.setOffscreenPageLimit(3);
-        mViewPager.setPageMargin(250);
-        mViewPager.setClipChildren(false);
-        mViewPager.setAdapter(mAdapter);
-
-        mViewPager.setCurrentItem(diffCurrentMonth);
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
+        FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
+        adapter = new ViewPagerAdapter(fm, totalMonthCount);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(diffCurrentMonth);
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                if (position <= mDuplicateTotalMonthCount && position >= 0) {
-                    if (position > mCurrentPosition) {
+                if (position <= duplicateTotalMonthCount && position >= 0) {
+                    if (position > currentPosition) {
                         Singleton.getInstance().setIsSwipeViewPager(1);
 
-                        ((CalendarFragment) mAdapter.getRegisteredFragment(position)).setNextMonth();
-                        ((CalendarFragment) mAdapter.getRegisteredFragment(position)).refreshCalendar();
+                        ((CalendarFragment) adapter.getRegisteredFragment(position)).setNextMonth();
+                        ((CalendarFragment) adapter.getRegisteredFragment(position)).refreshCalendar();
+
                     } else {
                         Singleton.getInstance().setIsSwipeViewPager(0);
 
-                        ((CalendarFragment) mAdapter.getRegisteredFragment(position)).setPreviousMonth();
-                        ((CalendarFragment) mAdapter.getRegisteredFragment(position)).refreshCalendar();
+                        ((CalendarFragment) adapter.getRegisteredFragment(position)).setPreviousMonth();
+                        ((CalendarFragment) adapter.getRegisteredFragment(position)).refreshCalendar();
                     }
-                    mCurrentPosition = position;
+                    currentPosition = position;
                 }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
+                ((CalendarFragment) adapter.getRegisteredFragment(position)).refreshCalendar(events);
             }
         });
-    }
-
-    /**
-     * @param dateData
-     */
-    public void setDateSelectionData(List<EventData> dateData) {
-
-        List<Object> items = new ArrayList<>();
-        items.clear();
-        if (dateData.size() > 0) {
-            for (int i = 0; i < dateData.size(); i++) {
-                if (dateData.get(i).getSection() != null && !dateData.get(i).getSection().isEmpty()) {
-                    if (dateData.get(i).getSection() instanceof String) {
-                        items.add(dateData.get(i).getSection());
-                    }
-                }
-                if (dateData.size() > 0) {
-                    for (int j = 0; j < dateData.get(i).getData().size(); j++) {
-                        List<String> list = new ArrayList<>();
-
-                        if (dateData.get(i).getData().get(j).getRemarks() != null)
-                            list.add(dateData.get(i).getData().get(j).getRemarks());
-                        else
-                            list.add("");
-                        if (dateData.get(i).getData().get(j).getSubject() != null)
-                            list.add(dateData.get(i).getData().get(j).getSubject());
-                        else
-                            list.add("");
-                        if (dateData.get(i).getData().get(j).getSubmissionDate() != null)
-                            list.add(dateData.get(i).getData().get(j).getSubmissionDate());
-                        else
-                            list.add("");
-                        if (dateData.get(i).getData().get(j).getTitle() != null)
-                            list.add(dateData.get(i).getData().get(j).getTitle());
-                        else
-                            list.add("");
-                        items.add(list);
-                    }
-                }
-            }
-        }
-        if (items.size() == 0) {
-//            mRvCalendar.setVisibility(View.GONE);
-            try {
-                Date dateTemp = CalendarUtils.getCalendarDBFormat().parse(Singleton.getInstance().getCurrentDate());
-            } catch (ParseException e) {
-                Log.e(TAG, e.getMessage(), e);
-            }
-        } else {
-//            mRvCalendar.setLayoutManager(mLinearLayoutManager);
-//            mRvCalendar.setAdapter(new CalendarDataAdapter(items));
-        }
-    }
-
-    @Override
-    protected void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        // Checks the orientation of the screen for landscape and portrait
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Log.d(TAG, "screenOrientation: landscape");
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            Log.d(TAG, "screenOrientation: portrait");
-        }
     }
 }
