@@ -24,7 +24,6 @@ public class CalendarGridViewAdapter extends BaseAdapter {
     public static int firstDay;
 
     private List<CalendarDecoratorDao> days;
-    private View mPreviousView;
 
     public CalendarGridViewAdapter(Context c, List<CalendarDecoratorDao> items, GregorianCalendar month) {
         this.days = items;
@@ -69,18 +68,6 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 
     public void setSelected(View view, String selectedGridDate) {
         ImageView img1 = view.findViewById(R.id.date_icon);
-
-        if (mPreviousView != null) {
-            mPreviousView.findViewById(R.id.llCalendarItem);
-            mPreviousView.setBackgroundResource(R.drawable.list_item_background);
-
-            TextView txt = mPreviousView.findViewById(R.id.tv_date);
-            txt.setTextColor(Color.WHITE);
-
-        }
-
-        mPreviousView = view;
-
         TextView txt = view.findViewById(R.id.tv_date);
         txt.setTextColor(Color.WHITE);
 
@@ -123,7 +110,6 @@ public class CalendarGridViewAdapter extends BaseAdapter {
             String day = decoratorDao.getDay();
             if (decoratorDao.getDate().equals(Singleton.getInstance().getCurrentDate())) {
                 setSelected(groupView, Singleton.getInstance().getCurrentDate());
-                mPreviousView = groupView;
             } else {
                 groupView.setBackgroundResource(R.drawable.list_item_background);
                 if (decoratorDao.getDate().equals(Singleton.getInstance().getTodayDate())) {

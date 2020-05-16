@@ -9,28 +9,14 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5cdf8c4-caeb-4617-a049-781a59c42fb3" name="Default" comment="update days selected">
+    <list default="true" id="d5cdf8c4-caeb-4617-a049-781a59c42fb3" name="Default" comment="custom add events">
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CalendarConstant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CalendarFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CalendarFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CustomCalendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CustomCalendar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/Singleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarDataAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarGridviewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarGridViewAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarGridViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/CalendarGridViewAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/ViewPagerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/ViewPagerAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/CalendarResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/CalendarResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/SectionDataViewHolder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/dao/SectionTitleViewHolder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/fragment/CalendarFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CalendarFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/utils/CalendarUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/utils/CalendarUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/layout/fragement.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/res/layout/fragement.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/layout/layout_viewpager_recyclerview.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/res/layout/layout_viewpager_recyclerview.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/layout/row_event_desc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/layout/row_event_header.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/calendar/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/calendar/src/main/res/values/dimens.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sample/src/main/java/com/riontech/sample/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/sample/src/main/java/com/riontech/sample/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/sample/src/main/res/layout/activity_main.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -404,7 +390,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587520941297</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="custom add events">
+      <created>1587797649042</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1587797649042</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -424,25 +417,31 @@
     <MESSAGE value="build upgrade changes" />
     <MESSAGE value="screen orientaion adding" />
     <MESSAGE value="update ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="update ui" />
+    <MESSAGE value="custom add events" />
+    <option name="LAST_COMMIT_MESSAGE" value="custom add events" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CalendarFragment.java</url>
-          <line>131</line>
-          <option name="timeStamp" value="18" />
+          <line>47</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CalendarFragment.java</url>
-          <line>137</line>
-          <option name="timeStamp" value="20" />
+          <url>file://$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/adapter/ViewPagerAdapter.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CalendarFragment.java</url>
-          <line>159</line>
-          <option name="timeStamp" value="22" />
+          <url>file://$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CustomCalendar.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/calendar/src/main/java/com/riontech/calendar/CustomCalendar.java</url>
+          <line>190</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

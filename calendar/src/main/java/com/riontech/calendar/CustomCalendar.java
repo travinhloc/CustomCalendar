@@ -38,6 +38,8 @@ public class CustomCalendar extends LinearLayout {
 
     private Context context;
     private AttributeSet attributeSet = null;
+    private CalendarFragment.OnDateSelected onDateSelected;
+    private OnDateCallBack callBack;
 
     public CustomCalendar(Context context) {
         super(context);
@@ -83,6 +85,17 @@ public class CustomCalendar extends LinearLayout {
                 a.recycle();
             }
         }
+
+        onDateSelected = new CalendarFragment.OnDateSelected() {
+            @Override
+            public void onDateSelected(String date) {
+
+                if (callBack!= null) {
+                    callBack.onDateSelected(date);
+                }
+
+            }
+        };
         viewPager = findViewById(R.id.viewPager);
         if (!isValidAttr) {
             invalidAttributes();
@@ -103,6 +116,10 @@ public class CustomCalendar extends LinearLayout {
         setupCalendar(Singleton.getInstance().getStartMonth(), Singleton.getInstance().getEndMonth());
 
         Singleton.getInstance().setEventManager(events);
+    }
+
+    public void setOnDateSelected(CalendarFragment.OnDateSelected onDateSelected) {
+        this.onDateSelected = onDateSelected;
     }
 
     private void validateAttributes(String startMonth, String endMonth) {
@@ -172,7 +189,7 @@ public class CustomCalendar extends LinearLayout {
         currentPosition = diffCurrentMonth;
 
         FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
-        adapter = new ViewPagerAdapter(fm, totalMonthCount);
+        adapter = new ViewPagerAdapter(fm, totalMonthCount, onDateSelected);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(diffCurrentMonth);
         viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -196,5 +213,13 @@ public class CustomCalendar extends LinearLayout {
                 ((CalendarFragment) adapter.getRegisteredFragment(position)).refreshCalendar(events);
             }
         });
+    }
+
+    public void setOnDateSelected(OnDateCallBack onDateSelected) {
+        this.callBack = onDateSelected;
+    }
+
+    public interface OnDateCallBack{
+        void onDateSelected(String date);
     }
 }

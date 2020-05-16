@@ -42,9 +42,11 @@ public class CalendarFragment extends Fragment {
     private GregorianCalendar mPMonthMaxSet;
     private List<CalendarDecoratorDao> days = new ArrayList<>();
     private ViewGroup rootView;
+    private OnDateSelected onDateSelected;
 
-    public static CalendarFragment newInstance() {
+    public static CalendarFragment newInstance(OnDateSelected onDateSelected) {
         CalendarFragment fragment = new CalendarFragment();
+        fragment.setOnDateSelected(onDateSelected);
         return fragment;
     }
 
@@ -78,6 +80,9 @@ public class CalendarFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 String selectedDate = days.get(position).getDate();
                 ((CalendarGridViewAdapter) parent.getAdapter()).setSelected(v, selectedDate);
+                if (onDateSelected!= null) {
+                    onDateSelected.onDateSelected(selectedDate);
+                }
             }
         });
     }
@@ -134,7 +139,6 @@ public class CalendarFragment extends Fragment {
         mGridview.setVisibility(View.VISIBLE);
 
         if (calendarResponse.getMonthdata() != null) {
-
             List<Event> monthDataList = calendarResponse.getMonthdata();
             int m = 0;
             for (int n = 0; n < mMonthLength; n++) {
@@ -166,8 +170,6 @@ public class CalendarFragment extends Fragment {
     }
 
     private void updateSelectMonth(List<Event> events){
-
-
     }
 
     public void setNextMonth() {
@@ -205,4 +207,12 @@ public class CalendarFragment extends Fragment {
         return maxP;
     }
 
+    public void setOnDateSelected(OnDateSelected onDateSelected) {
+        this.onDateSelected = onDateSelected;
+    }
+
+    public interface OnDateSelected{
+
+        void onDateSelected(String date);
+    }
 }

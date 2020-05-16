@@ -3,7 +3,10 @@ package com.riontech.sample;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CalendarView;
+import android.widget.Toast;
 
+import com.riontech.calendar.CalendarFragment;
 import com.riontech.calendar.CustomCalendar;
 import com.riontech.calendar.dao.EventData;
 import com.riontech.calendar.dao.dataAboutDate;
@@ -23,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         customCalendar = (CustomCalendar) findViewById(R.id.customCalendar);
+        customCalendar.setOnDateSelected(new CustomCalendar.OnDateCallBack() {
+            @Override
+            public void onDateSelected(String date) {
+                Toast.makeText(MainActivity.this, date, Toast.LENGTH_SHORT).show();
+            }
+        });
         findViewById(R.id.add_event).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,5 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 customCalendar.addAnEvents(strings);
             }
         });
+
+
     }
 }

@@ -16,16 +16,18 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     private SparseArray<Fragment> registeredFragments = new SparseArray<>();
     private int mCount;
     private static final String TAG = ViewPagerAdapter.class.getSimpleName();
+    private CalendarFragment.OnDateSelected onDateSelected;
 
 
-    public ViewPagerAdapter(FragmentManager fm, int count) {
+    public ViewPagerAdapter(FragmentManager fm, int count, CalendarFragment.OnDateSelected onDateSelected) {
         super(fm);
         this.mCount = count;
+        this.onDateSelected = onDateSelected;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return CalendarFragment.newInstance();
+        return CalendarFragment.newInstance(onDateSelected);
     }
 
     @Override
